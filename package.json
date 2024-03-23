@@ -1,0 +1,42 @@
+{
+  "name": "filesystem-server",
+  "version": "1.0.0",
+  "description": "Secure File Transfering Server",
+  "main": "dist/server.mjs",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/server.mjs",
+    
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xirayah/filesystem-server.git"
+  },
+  "keywords": [
+    "file",
+    "transfering",
+    "fastify",
+    "http",
+    "server",
+    "auth",
+    "authentication",
+    "secure"
+  ],
+  "author": "Xirayah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xirayah/filesystem-server/issues"
+  },
+  "homepage": "https://github.com/xirayah/filesystem-server#readme",
+  "dependencies": {
+    "@fastify/autoload": "^5.8.0",
+    "@fastify/multipart": "^8.2.0",
+    "@types/node": "^20.11.30",
+    "dotenv": "^16.4.5",
+    "fastify": "^4.26.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.3"
+  }
+}
