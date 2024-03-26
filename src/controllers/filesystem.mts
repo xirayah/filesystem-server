@@ -36,3 +36,16 @@ export const saveFile = async (
   }
   return await reply.status(200).send(MSG_SUCC_ADD)
 }
+
+/**
+ * OK
+ * @param request 
+ * @param reply 
+ * @returns 
+ */
+export const OK = async (
+  request: FastifyRequest<AddFileRequest>,
+  reply: FastifyReply
+): Promise<FastifyReply> => {
+  return await reply.status(200).send('OK')
+}

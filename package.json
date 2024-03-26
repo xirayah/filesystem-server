@@ -5,8 +5,7 @@
   "main": "dist/server.mjs",
   "scripts": {
     "build": "npx tsc",
-    "start": "node dist/server.mjs",
-    
+    "start": "node dist/server.mjs | npx pino-pretty",
     "test": "mocha"
   },
   "repository": {
@@ -34,7 +33,8 @@
     "@fastify/multipart": "^8.2.0",
     "@types/node": "^20.11.30",
     "dotenv": "^16.4.5",
-    "fastify": "^4.26.2"
+    "fastify": "^4.26.2",
+    "pino-pretty": "^11.0.0"
   },
   "devDependencies": {
     "typescript": "^5.4.3"
