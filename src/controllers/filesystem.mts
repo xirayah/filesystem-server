@@ -1,3 +1,4 @@
+import { execSync } from 'child_process'
 import {
   FastifyReply,
   FastifyRequest
@@ -5,6 +6,7 @@ import {
 import {
   existsSync,
   mkdirSync,
+  readFileSync,
   writeFileSync
 } from 'fs'
 
@@ -13,7 +15,11 @@ import {
   MSG_FAIL_ADD,
   MSG_SUCC_ADD
 } from '../constants/reply-messages.mjs'
-import { AddFileRequest } from '../interfaces/request-extensions.mjs'
+import {
+  AddFileRequest,
+  GetFileRequest,
+  UniversalRequest
+} from '../interfaces/request-extensions.mjs'
 
 /**
  * Saves a file to a chosen folder
@@ -35,6 +41,30 @@ export const saveFile = async (
     return reply.status(500).send(MSG_FAIL_ADD)
   }
   return await reply.status(200).send(MSG_SUCC_ADD)
+}
+
+export const getFile = async (
+  request: FastifyRequest<UniversalRequest>,
+  reply: FastifyReply
+): Promise<FastifyReply> => {
+  const path = cfg.FILES_LOCATION + request.params.PATH
+  try {
+    if (existsSync(path)) {
+      const file = readFileSync(path)
+      return reply.status(200).send(file)
+    }
+  } catch(error) {
+    return reply.status(500).send('Fail')
+  }
+  return await reply.status(500).send('')
+}
+
+export const showFiles = async (
+  request: FastifyRequest<UniversalRequest>,
+  reply: FastifyReply
+): Promise<FastifyReply> => {
+  const res = execSync(`ls ${cfg.FILES_LOCATION}${request.params.PATH}`)
+  return await reply.status(200).send(res)
 }
 
 /**

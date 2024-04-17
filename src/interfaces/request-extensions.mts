@@ -6,3 +6,11 @@ export interface AddFileRequest {
     AUTH: any
   }
 }
+
+export interface GetFileRequest {
+  Params: {
+    PATH: string
+  }
+}
+
+export interface UniversalRequest extends AddFileRequest, GetFileRequest {}
